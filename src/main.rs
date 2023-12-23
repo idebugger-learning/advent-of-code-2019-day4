@@ -22,13 +22,10 @@ fn check_condition(number: usize) -> bool {
 }
 
 fn check_adjacent_chars(str: &String) -> bool {
-    for (a, b) in str.chars().tuple_windows() {
-        if a == b {
-            return true;
-        }
-    }
-
-    return false;
+    str.chars()
+        .group_by(|c| *c)
+        .into_iter()
+        .any(|group| group.1.count() == 2)
 }
 
 fn check_non_decreasing(str: &String) -> bool {
